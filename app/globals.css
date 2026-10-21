@@ -431,3 +431,65 @@ tr:last-child td { border: 0; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition: none !important; scroll-behavior: auto !important; }
 }
+
+/* Georgian typography: preserve the editorial hierarchy without compressing letterforms. */
+html[lang='ka'] {
+  --serif: 'Noto Serif Georgian', 'Bodoni MT', 'Didot', 'Times New Roman', serif;
+}
+html[lang='ka'] body { font-family: 'Noto Sans Georgian', Arial, sans-serif; }
+html[lang='ka'] h1,
+html[lang='ka'] h2,
+html[lang='ka'] h3 { letter-spacing: -.02em; line-height: 1.4; }
+html[lang='ka'] .hero h2 { font-size: clamp(43px, 4.1vw, 65px); line-height: 1.45; letter-spacing: -.035em; }
+html[lang='ka'] .hero h2 em { font-style: normal; }
+html[lang='ka'] .hero p { max-width: 440px; }
+html[lang='ka'] .workspace-label { width: 130px; line-height: 2; letter-spacing: .6px; }
+html[lang='ka'] .eyebrow,
+html[lang='ka'] .hero-kicker,
+html[lang='ka'] .sector-label,
+html[lang='ka'] .cover-sector,
+html[lang='ka'] .editorial-label { letter-spacing: .7px; }
+html[lang='ka'] .nav-link { font-size: 11px; }
+html[lang='ka'] .section-heading h2 { font-size: 31px; }
+html[lang='ka'] .company-description { min-height: 63px; }
+html[lang='ka'] .stat-number { white-space: nowrap; font-family: 'Times New Roman', serif; }
+html[lang='ka'] .stat-foot { flex-wrap: wrap; line-height: 1.8; }
+html[lang='ka'] .stat-link { margin-left: 0; }
+html[lang='ka'] .stat-label { min-height: 28px; gap: 10px; }
+html[lang='ka'] .art-caption { font-size: 16px; font-style: normal; }
+html[lang='ka'] .lesson-info h3 { font-size: 20px; }
+html[lang='ka'] .lesson-info small { line-height: 1.9; letter-spacing: .4px; }
+html[lang='ka'] .count { font-family: 'Noto Sans Georgian', Arial, sans-serif; }
+html[lang='ka'] .chat-header strong { font-size: 17px; line-height: 1.6; }
+html[lang='ka'] .chat-header small { line-height: 1.9; }
+html[lang='ka'] .modal h2 { font-size: 28px; }
+html[lang='ka'] .modal-actions { flex-wrap: wrap; }
+@media (max-width: 1150px) {
+  html[lang='ka'] .workspace-label { display: none; }
+  html[lang='ka'] .hero h2 { font-size: 45px; }
+  html[lang='ka'] .sidebar nav { gap: 18px; }
+}
+@media (max-width: 900px) {
+  html[lang='ka'] .hero h2 { font-size: 36px; }
+  html[lang='ka'] .nav-link { font-size: 10px; }
+  html[lang='ka'] .sidebar nav { gap: 12px; }
+  html[lang='ka'] .stat-number { font-size: 29px; }
+  html[lang='ka'] .stat-link { display: none; }
+  html[lang='ka'] .lesson-info h3 { font-size: 17px; }
+  html[lang='ka'] .company-description { min-height: 76px; }
+}
+@media (max-width: 700px) {
+  html[lang='ka'] .workspace-label { display: block; width: auto; }
+  html[lang='ka'] .nav-link { font-size: 14px; }
+  html[lang='ka'] h1 { font-size: 29px; }
+  html[lang='ka'] .hero h2 { font-size: clamp(31px, 8.3vw, 56px); }
+  html[lang='ka'] .hero p { font-size: 11px; }
+  html[lang='ka'] .stat-number { font-size: 28px; }
+  html[lang='ka'] .stat-card:first-child .stat-number { font-size: 38px; }
+  html[lang='ka'] .section-heading { flex-wrap: wrap; }
+  html[lang='ka'] .section-heading h2 { font-size: 28px; }
+  html[lang='ka'] .company-description { min-height: 0; }
+  html[lang='ka'] .lesson-info h3 { font-size: 18px; }
+  html[lang='ka'] .modal h2 { font-size: 25px; }
+  html[lang='ka'] footer > span { line-height: 1.8; }
+}

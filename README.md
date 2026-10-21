@@ -1,6 +1,6 @@
 # Forma — Pre-IPO Investment Hub
 
-A responsive educational demo built with Next.js, TypeScript and Tailwind CSS. All five companies, prices, funding figures, percentage changes and transactions are fictional. No real investments, payments, or securities transfers take place.
+A responsive Georgian-language educational demo built with Next.js, TypeScript and Tailwind CSS. The editorial layout uses locally bundled Noto Georgian fonts. Interface text, lessons, assistant responses and trading messages are Georgian; fictional company names and the Forma brand remain in their original spelling. Euro amounts use Georgian separators consistently, including browsers without Georgian ICU locale support. All five companies, prices, funding figures, percentage changes and transactions are fictional. No real investments, payments, or securities transfers take place.
 
 ## Run locally
 

@@ -1,20 +1,20 @@
 export const companies = [
-  { id: 'nord', name: 'Nord Systems', ticker: 'NORD', sector: 'Clean energy', description: 'Smarter energy storage for a cleaner European grid.', price: 42.5, change: 8.4, stage: 'Series C', valuation: '€420M', location: 'Copenhagen, DK', color: '#d7eddf', symbol: 'N', raised: '€68M', founded: '2019' },
-  { id: 'orbit', name: 'Orbit Aerospace', ticker: 'ORBT', sector: 'Space technology', description: 'Making low-earth orbit accessible to the next generation.', price: 78, change: 12.6, stage: 'Series D', valuation: '€1.2B', location: 'Munich, DE', color: '#e6e0f7', symbol: 'O', raised: '€210M', founded: '2017' },
-  { id: 'bloom', name: 'Bloom Health', ticker: 'BLMH', sector: 'Digital health', description: 'Personalised preventative care, built around people.', price: 26.8, change: 5.2, stage: 'Series B', valuation: '€185M', location: 'Amsterdam, NL', color: '#f7e2da', symbol: 'b', raised: '€32M', founded: '2021' },
-  { id: 'flow', name: 'Flow Financial', ticker: 'FLOW', sector: 'Fintech', description: 'Borderless financial tools for Europe’s small businesses.', price: 54.2, change: -2.3, stage: 'Series C', valuation: '€640M', location: 'London, UK', color: '#dce9fa', symbol: 'ƒ', raised: '€94M', founded: '2018' },
-  { id: 'terra', name: 'Terra Foods', ticker: 'TERRA', sector: 'Food innovation', description: 'A better food system, rooted in plant-based innovation.', price: 18.6, change: 6.7, stage: 'Series B', valuation: '€96M', location: 'Barcelona, ES', color: '#eee9cd', symbol: 't', raised: '€24M', founded: '2020' },
+  { id: 'nord', name: 'Nord Systems', ticker: 'NORD', sector: 'სუფთა ენერგია', description: 'ენერგიის ჭკვიანი შენახვა ევროპის უფრო სუფთა ენერგოქსელისთვის.', price: 42.5, change: 8.4, stage: 'C რაუნდი', valuation: '420 მლნ €', location: 'კოპენჰაგენი, დანია', color: '#d7eddf', symbol: 'N', raised: '68 მლნ €', founded: '2019' },
+  { id: 'orbit', name: 'Orbit Aerospace', ticker: 'ORBT', sector: 'კოსმოსური ტექნოლოგიები', description: 'დედამიწის დაბალი ორბიტა ხელმისაწვდომი ხდება მომავალი თაობისთვის.', price: 78, change: 12.6, stage: 'D რაუნდი', valuation: '1,2 მლრდ €', location: 'მიუნხენი, გერმანია', color: '#e6e0f7', symbol: 'O', raised: '210 მლნ €', founded: '2017' },
+  { id: 'bloom', name: 'Bloom Health', ticker: 'BLMH', sector: 'ციფრული ჯანდაცვა', description: 'ადამიანზე მორგებული, პერსონალიზებული პრევენციული ზრუნვა.', price: 26.8, change: 5.2, stage: 'B რაუნდი', valuation: '185 მლნ €', location: 'ამსტერდამი, ნიდერლანდები', color: '#f7e2da', symbol: 'b', raised: '32 მლნ €', founded: '2021' },
+  { id: 'flow', name: 'Flow Financial', ticker: 'FLOW', sector: 'ფინანსური ტექნოლოგიები', description: 'ფინანსური ინსტრუმენტები საზღვრების გარეშე ევროპის მცირე ბიზნესებისთვის.', price: 54.2, change: -2.3, stage: 'C რაუნდი', valuation: '640 მლნ €', location: 'ლონდონი, გაერთიანებული სამეფო', color: '#dce9fa', symbol: 'ƒ', raised: '94 მლნ €', founded: '2018' },
+  { id: 'terra', name: 'Terra Foods', ticker: 'TERRA', sector: 'კვების ინოვაციები', description: 'უკეთესი კვების სისტემა მცენარეულ ინოვაციებზე დაყრდნობით.', price: 18.6, change: 6.7, stage: 'B რაუნდი', valuation: '96 მლნ €', location: 'ბარსელონა, ესპანეთი', color: '#eee9cd', symbol: 't', raised: '24 მლნ €', founded: '2020' },
 ];
 export type Transaction = { id: string; companyId: string; side: 'buy' | 'sell'; quantity: number; total: number; date: string };
 export type Account = { balance: number; holdings: Record<string, number>; transactions: Transaction[] };
 export const initialAccount = (): Account => ({ balance: 10000, holdings: {}, transactions: [] });
 export function trade(account: Account, companyId: string, side: 'buy' | 'sell', quantity: number): Account {
   const company = companies.find(c => c.id === companyId);
-  if (!company || !Number.isSafeInteger(quantity) || quantity <= 0) throw new Error('Enter a positive whole number of shares.');
+  if (!company || !Number.isSafeInteger(quantity) || quantity <= 0) throw new Error('მიუთითეთ აქციების დადებითი მთელი რაოდენობა.');
   const total = Math.round(company.price * quantity * 100) / 100;
-  if (!Number.isSafeInteger(Math.round(total * 100))) throw new Error('Quantity is too large.');
-  if (side === 'buy' && total > account.balance) throw new Error('Not enough virtual cash for this order.');
-  if (side === 'sell' && quantity > (account.holdings[companyId] || 0)) throw new Error('You don’t own enough shares to sell.');
+  if (!Number.isSafeInteger(Math.round(total * 100))) throw new Error('რაოდენობა ზედმეტად დიდია.');
+  if (side === 'buy' && total > account.balance) throw new Error('ამ შეკვეთისთვის ვირტუალური თანხა არ გყოფნით.');
+  if (side === 'sell' && quantity > (account.holdings[companyId] || 0)) throw new Error('გასაყიდად საკმარისი აქციები არ გაქვთ.');
   return { balance: Math.round((account.balance + (side === 'buy' ? -total : total)) * 100) / 100, holdings: { ...account.holdings, [companyId]: (account.holdings[companyId] || 0) + (side === 'buy' ? quantity : -quantity) }, transactions: [{ id: crypto.randomUUID(), companyId, side, quantity, total, date: new Date().toISOString() }, ...account.transactions] };
 }
 export function isAccount(value: unknown): value is Account {
